@@ -89,7 +89,7 @@ const I18N = {
       filterFishExclude: "Escludi pesce",
       filterFishOnly: "Solo pesce",
       allergeneLabel: "Escludi se sei allergico/intollerante a:",
-      allergeneDisclaimer: "⚠️ Filtro indicativo basato sugli ingredienti elencati: in caso di allergie serie, controlla sempre bene prima di mangiare.",
+      allergeneDisclaimer: "⚠️ Attenzione: questo filtro è puramente indicativo e si basa solo sugli ingredienti elencati nella ricetta, che potrebbero essere incompleti o non riflettere possibili contaminazioni incrociate. L'app non fornisce consulenza medica: se hai un'allergia o un'intolleranza, verifica sempre gli ingredienti reali prima di mangiare e consulta un medico in caso di dubbi.",
       frigoSummary: "🧊 Cosa hai in frigo? Trova ricette con quello che hai già",
       frigoPlaceholder: "Es. zucchine, uova, pomodori... (separati da virgola)",
       frigoFind: "Trova ricette",
@@ -174,7 +174,9 @@ const I18N = {
       sectionDatiTitle: "🔒 I tuoi dati",
       sectionDatiText: "Tutto quello che inserisci — menu, ricette preferite, foto, spese, storico — resta salvato solo sul tuo telefono o computer, nel browser che stai usando. Non c'è nessun account, nessuna registrazione e nessun dato che lascia il tuo dispositivo. Il rovescio della medaglia: se cambi browser o dispositivo, o cancelli i dati di navigazione, perdi anche i tuoi dati salvati qui.",
       sectionLinguaTitle: "🌐 Lingua",
-      sectionLinguaText: "Puoi cambiare la lingua dell'interfaccia in italiano, inglese o spagnolo con le bandierine in alto a destra in ogni pagina. Le ricette e i piatti tipici restano in italiano, ma tutto il resto dell'app si traduce."
+      sectionLinguaText: "Puoi cambiare la lingua dell'interfaccia in italiano, inglese o spagnolo con le bandierine in alto a destra in ogni pagina. Le ricette e i piatti tipici restano in italiano, ma tutto il resto dell'app si traduce.",
+      sectionDisclaimerTitle: "⚠️ Disclaimer su allergie e salute",
+      sectionDisclaimerText: "Le informazioni su ingredienti, allergeni e calorie presenti nell'app sono fornite a scopo puramente informativo e si basano sugli ingredienti indicati in ciascuna ricetta, che potrebbero essere incompleti, imprecisi o non tenere conto di contaminazioni incrociate durante la preparazione. L'app non fornisce consulenza medica, nutrizionale o dietetica di alcun tipo. Se soffri di allergie, intolleranze o altre condizioni di salute, verifica sempre personalmente gli ingredienti reali dei prodotti che acquisti e consulta un medico o uno specialista in caso di dubbi. L'uso dei filtri per allergeni è a tuo rischio e non deve essere considerato una garanzia di sicurezza alimentare."
     }
   },
 
@@ -262,7 +264,7 @@ const I18N = {
       filterFishExclude: "Exclude fish",
       filterFishOnly: "Fish only",
       allergeneLabel: "Exclude if you're allergic/intolerant to:",
-      allergeneDisclaimer: "⚠️ Indicative filter based on listed ingredients: for serious allergies, always double-check before eating.",
+      allergeneDisclaimer: "⚠️ Warning: this filter is purely indicative and is based only on the ingredients listed in the recipe, which may be incomplete or may not reflect possible cross-contamination. The app does not provide medical advice: if you have an allergy or intolerance, always check the actual ingredients before eating and consult a doctor if in doubt.",
       frigoSummary: "🧊 What's in your fridge? Find recipes with what you already have",
       frigoPlaceholder: "E.g. zucchini, eggs, tomatoes... (comma separated)",
       frigoFind: "Find recipes",
@@ -347,7 +349,9 @@ const I18N = {
       sectionDatiTitle: "🔒 Your data",
       sectionDatiText: "Everything you enter — menu, favourite recipes, photos, expenses, history — stays saved only on your phone or computer, in the browser you're using. There's no account, no sign-up, and no data ever leaves your device. The trade-off: if you switch browser or device, or clear your browsing data, you'll also lose what's saved here.",
       sectionLinguaTitle: "🌐 Language",
-      sectionLinguaText: "You can switch the interface language to Italian, English or Spanish using the flags in the top right of every page. Recipes and traditional dishes stay in Italian, but the rest of the app is translated."
+      sectionLinguaText: "You can switch the interface language to Italian, English or Spanish using the flags in the top right of every page. Recipes and traditional dishes stay in Italian, but the rest of the app is translated.",
+      sectionDisclaimerTitle: "⚠️ Allergy and health disclaimer",
+      sectionDisclaimerText: "The information about ingredients, allergens and calories in the app is provided for informational purposes only and is based on the ingredients listed in each recipe, which may be incomplete, inaccurate, or may not account for cross-contamination during preparation. The app does not provide medical, nutritional, or dietary advice of any kind. If you have allergies, intolerances, or other health conditions, always personally check the actual ingredients of the products you buy and consult a doctor or specialist if in doubt. Use of the allergen filters is at your own risk and should not be considered a guarantee of food safety."
     }
   },
 
@@ -435,7 +439,7 @@ const I18N = {
       filterFishExclude: "Excluir pescado",
       filterFishOnly: "Solo pescado",
       allergeneLabel: "Excluir si eres alérgico/intolerante a:",
-      allergeneDisclaimer: "⚠️ Filtro orientativo basado en los ingredientes indicados: en caso de alergias graves, comprueba siempre bien antes de comer.",
+      allergeneDisclaimer: "⚠️ Atención: este filtro es puramente orientativo y se basa solo en los ingredientes indicados en la receta, que podrían estar incompletos o no reflejar posibles contaminaciones cruzadas. La app no ofrece asesoramiento médico: si tienes una alergia o intolerancia, comprueba siempre los ingredientes reales antes de comer y consulta a un médico en caso de duda.",
       frigoSummary: "🧊 ¿Qué tienes en la nevera? Encuentra recetas con lo que ya tienes",
       frigoPlaceholder: "Ej. calabacín, huevos, tomates... (separados por comas)",
       frigoFind: "Buscar recetas",
@@ -520,7 +524,9 @@ const I18N = {
       sectionDatiTitle: "🔒 Tus datos",
       sectionDatiText: "Todo lo que introduces — menú, recetas favoritas, fotos, gastos, historial — se guarda solo en tu teléfono u ordenador, en el navegador que estás usando. No hay cuenta, ni registro, ni ningún dato que salga de tu dispositivo. La contrapartida: si cambias de navegador o dispositivo, o borras los datos de navegación, también pierdes lo que tienes guardado aquí.",
       sectionLinguaTitle: "🌐 Idioma",
-      sectionLinguaText: "Puedes cambiar el idioma de la interfaz a italiano, inglés o español con las banderas en la parte superior derecha de cada página. Las recetas y los platos típicos se mantienen en italiano, pero el resto de la app se traduce."
+      sectionLinguaText: "Puedes cambiar el idioma de la interfaz a italiano, inglés o español con las banderas en la parte superior derecha de cada página. Las recetas y los platos típicos se mantienen en italiano, pero el resto de la app se traduce.",
+      sectionDisclaimerTitle: "⚠️ Aviso sobre alergias y salud",
+      sectionDisclaimerText: "La información sobre ingredientes, alérgenos y calorías de la app se ofrece únicamente con fines informativos y se basa en los ingredientes indicados en cada receta, que podrían estar incompletos, ser imprecisos o no tener en cuenta posibles contaminaciones cruzadas durante la preparación. La app no ofrece asesoramiento médico, nutricional ni dietético de ningún tipo. Si sufres alergias, intolerancias u otras condiciones de salud, comprueba siempre personalmente los ingredientes reales de los productos que compras y consulta a un médico o especialista en caso de duda. El uso de los filtros de alérgenos es bajo tu propia responsabilidad y no debe considerarse una garantía de seguridad alimentaria."
     }
   }
 };

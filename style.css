@@ -622,10 +622,39 @@ main {
 }
 
 .allergene-disclaimer {
-  font-size: 0.75rem;
-  color: var(--testo-secondario);
-  font-style: italic;
-  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.82rem;
+  color: #7a4a00;
+  background-color: #fff4d9;
+  border: 1px solid #f0c96b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+
+.disclaimer-section {
+  background-color: #fff4d9;
+  border: 1px solid #f0c96b;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.disclaimer-section h2 {
+  font-size: 1rem;
+  color: #7a4a00;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f0c96b;
+  padding-bottom: 6px;
+}
+
+.disclaimer-section p {
+  color: #7a4a00;
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .frigo-tool {
