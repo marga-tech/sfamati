@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Calorie | Piano Alimentare</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-decor" aria-hidden="true">
+      <span class="decor decor-1">🍩</span>
+      <span class="decor decor-2">🍇</span>
+      <span class="decor decor-3">🥦</span>
+      <span class="decor decor-4">🍉</span>
+    </div>
+    <h1 data-i18n="calorie.title">Riepilogo Calorie</h1>
+    <p class="header-subtitle" data-i18n="calorie.subtitle">Una sezione facoltativa: la vedi solo se scegli tu di attivarla</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav-link" data-i18n="nav.home">Home</a>
+    <a href="menu.html" class="main-nav-link" data-i18n="nav.menu">Menu</a>
+    <a href="ricette.html" class="main-nav-link" data-i18n="nav.ricette">Ricette</a>
+    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
+    <a href="spesa.html" class="main-nav-link" data-i18n="nav.spesa">Spesa</a>
+    <a href="storico.html" class="main-nav-link" data-i18n="nav.storico">Storico</a>
+    <a href="calorie.html" class="main-nav-link active" data-i18n="nav.calorie">Calorie</a>
+    <a href="guida.html" class="main-nav-link" data-i18n="nav.guida">Guida</a>
+  </nav>
+
+  <main class="page-container">
+
+    <div id="consentScreen" class="consent-screen" hidden>
+      <div class="consent-card">
+        <div class="consent-icon">🍎</div>
+        <h2 data-i18n="calorie.consentTitle">Vuoi tenere traccia delle calorie?</h2>
+        <p data-i18n="calorie.consentText">È una funzione facoltativa. Alcune persone la trovano utile, altre preferiscono non pensare ai numeri: va benissimo in entrambi i casi.</p>
+        <div class="consent-actions">
+          <button type="button" id="consentYesBtn" class="primary-btn" data-i18n="calorie.consentYes">Sì, mostrami il riepilogo</button>
+          <button type="button" id="consentNoBtn" class="reset-btn" data-i18n="calorie.consentNo">No, preferisco di no</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="declinedScreen" class="consent-screen" hidden>
+      <div class="consent-card">
+        <div class="consent-icon">🙂</div>
+        <h2 data-i18n="calorie.declinedTitle">Nessun numero da vedere qui</h2>
+        <p data-i18n="calorie.declinedText">Hai scelto di non tenere traccia delle calorie. Puoi cambiare idea in qualsiasi momento.</p>
+        <div class="consent-actions">
+          <button type="button" id="changeMindBtn" class="primary-btn" data-i18n="calorie.changeMind">Cambia preferenza</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="calorieContent" hidden>
+      <div class="goal-setting goal-setting-inline">
+        <label for="goalInput" data-i18n="calorie.dailyGoal">Obiettivo giornaliero</label>
+        <div class="goal-input-wrap">
+          <input type="number" id="goalInput" min="500" step="50" value="2000">
+          <span>kcal</span>
+        </div>
+      </div>
+
+      <nav id="dayTabs" class="day-tabs"></nav>
+
+      <div id="daysContainer"></div>
+
+      <button type="button" id="hideAgainBtn" class="hide-again-btn" data-i18n="calorie.hideAgain">Nascondi di nuovo questa sezione</button>
+    </div>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="calorie.js"></script>
+</body>
+</html>

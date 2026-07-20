@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Menu Settimanale | Piano Alimentare</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-decor" aria-hidden="true">
+      <span class="decor decor-1">🍕</span>
+      <span class="decor decor-2">🥑</span>
+      <span class="decor decor-3">🍓</span>
+      <span class="decor decor-4">🌮</span>
+    </div>
+    <h1 data-i18n="menu.title">Il Mio Menu Settimanale</h1>
+    <p class="header-subtitle" data-i18n="menu.subtitle">Scegli cosa mangiare giorno per giorno, tra ricette pronte e alimenti liberi</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav-link" data-i18n="nav.home">Home</a>
+    <a href="menu.html" class="main-nav-link active" data-i18n="nav.menu">Menu</a>
+    <a href="ricette.html" class="main-nav-link" data-i18n="nav.ricette">Ricette</a>
+    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
+    <a href="spesa.html" class="main-nav-link" data-i18n="nav.spesa">Spesa</a>
+    <a href="storico.html" class="main-nav-link" data-i18n="nav.storico">Storico</a>
+    <a href="calorie.html" class="main-nav-link" data-i18n="nav.calorie">Calorie</a>
+    <a href="guida.html" class="main-nav-link" data-i18n="nav.guida">Guida</a>
+  </nav>
+
+  <nav id="dayTabs" class="day-tabs"></nav>
+
+  <details class="auto-generate-panel">
+    <summary data-i18n="menu.autoGenerateSummary">🎲 Genera menu automatico</summary>
+    <div class="auto-generate-form">
+      <div class="auto-generate-mode">
+        <label for="autoGenModalita" data-i18n="menu.autoGenModalitaLabel">Modalità</label>
+        <select id="autoGenModalita">
+          <option value="misto" data-i18n="menu.modeMisto">🎯 Misto (bilanciato)</option>
+          <option value="fitness" data-i18n="menu.modeFitness">💪 Fitness (leggero, meno calorie)</option>
+          <option value="veloce" data-i18n="menu.modeVeloce">⚡ Veloce (solo ricette rapide)</option>
+          <option value="goloso" data-i18n="menu.modeGoloso">🍰 Goloso (comfort food)</option>
+        </select>
+      </div>
+      <label class="auto-generate-option">
+        <input type="checkbox" id="autoGenPesce">
+        <span data-i18n="menu.autoGenNoFish">Escludi piatti a base di pesce</span>
+      </label>
+      <div class="auto-generate-allergeni">
+        <span class="filter-label" data-i18n="menu.autoGenAllergeniLabel">Escludi se hai allergie/intolleranze a:</span>
+        <div class="filter-group" id="autoGenAllergeniFilters">
+          <button type="button" class="filter-chip" data-allergene="glutine" data-i18n="allergeni.glutine">Glutine</button>
+          <button type="button" class="filter-chip" data-allergene="lattosio" data-i18n="allergeni.lattosio">Lattosio</button>
+          <button type="button" class="filter-chip" data-allergene="frutta_guscio" data-i18n="allergeni.frutta_guscio">Frutta a guscio</button>
+          <button type="button" class="filter-chip" data-allergene="uova" data-i18n="allergeni.uova">Uova</button>
+        </div>
+      </div>
+      <div class="auto-generate-evita">
+        <label for="autoGenEvita" data-i18n="menu.autoGenEvitaLabel">Altri alimenti da evitare</label>
+        <input type="text" id="autoGenEvita" placeholder="Es. funghi, olive, piccante... (separati da virgola)" data-i18n-placeholder="menu.autoGenEvitaPlaceholder">
+      </div>
+      <p class="allergene-disclaimer" data-i18n="ricette.allergeneDisclaimer">⚠️ Filtro indicativo basato sugli ingredienti elencati: in caso di allergie serie, controlla sempre bene prima di mangiare.</p>
+      <label class="auto-generate-option">
+        <input type="checkbox" id="autoGenOverwrite">
+        <span data-i18n="menu.autoGenOverwrite">Sostituisci anche i pasti già inseriti</span>
+      </label>
+      <button type="button" id="autoGenerateBtn" class="primary-btn" data-i18n="menu.autoGenerateBtn">Genera menu della settimana</button>
+      <p id="autoGenerateStatus" class="auto-generate-status"></p>
+    </div>
+  </details>
+
+  <main id="daysContainer"></main>
+
+  <footer class="app-footer">
+    <a href="storico.html" class="secondary-link" data-i18n="menu.viewHistory">📚 Vedi settimane precedenti</a>
+    <button id="resetBtn" type="button" class="reset-btn" data-i18n="common.resetAll">Cancella tutti i dati</button>
+    <p class="footer-note" data-i18n="common.footerNote">I dati sono salvati solo su questo dispositivo/browser.</p>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <img id="lightboxImg" src="" alt="Foto del piatto">
+  </div>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="photos.js"></script>
+  <script src="budget.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Kit di Sopravvivenza Erasmus | Piano Alimentare</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-decor" aria-hidden="true">
+      <span class="decor decor-1">🛫</span>
+      <span class="decor decor-2">🍕</span>
+      <span class="decor decor-3">🥑</span>
+      <span class="decor decor-4">🍜</span>
+    </div>
+    <h1 data-i18n="home.title">Il Tuo Kit di Sopravvivenza Erasmus</h1>
+    <p class="header-subtitle" data-i18n="home.subtitle">Cosa mangiare, cosa comprare e quanto spendi: tutto in un posto solo</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav-link active" data-i18n="nav.home">Home</a>
+    <a href="menu.html" class="main-nav-link" data-i18n="nav.menu">Menu</a>
+    <a href="ricette.html" class="main-nav-link" data-i18n="nav.ricette">Ricette</a>
+    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
+    <a href="spesa.html" class="main-nav-link" data-i18n="nav.spesa">Spesa</a>
+    <a href="storico.html" class="main-nav-link" data-i18n="nav.storico">Storico</a>
+    <a href="calorie.html" class="main-nav-link" data-i18n="nav.calorie">Calorie</a>
+    <a href="guida.html" class="main-nav-link" data-i18n="nav.guida">Guida</a>
+  </nav>
+
+  <main class="page-container">
+
+    <section class="nav-cards" id="navCards">
+      <a href="menu.html" class="nav-card">
+        <span class="nav-card-icon">📅</span>
+        <span class="nav-card-title" data-i18n="home.navMenuTitle">Menu Settimanale</span>
+        <span class="nav-card-desc" data-i18n="home.navMenuDesc">Scegli cosa mangiare ogni giorno, tra ricette pronte e alimenti liberi</span>
+      </a>
+      <a href="ricette.html" class="nav-card">
+        <span class="nav-card-icon">🍝</span>
+        <span class="nav-card-title" data-i18n="home.navRicetteTitle">Ricette</span>
+        <span class="nav-card-desc" data-i18n="home.navRicetteDesc">Oltre 1500 piatti facili, con filtri per pesce, stile e tempo di preparazione</span>
+      </a>
+      <a href="scopri.html" class="nav-card">
+        <span class="nav-card-icon">🌍</span>
+        <span class="nav-card-title" data-i18n="home.navScopriTitle">Scopri</span>
+        <span class="nav-card-desc" data-i18n="home.navScopriDesc">I piatti tipici del paese dove vivi il tuo Erasmus, per assaggiare la cultura locale</span>
+      </a>
+      <a href="spesa.html" class="nav-card">
+        <span class="nav-card-icon">🛒</span>
+        <span class="nav-card-title" data-i18n="home.navSpesaTitle">Lista della Spesa</span>
+        <span class="nav-card-desc" data-i18n="home.navSpesaDesc">Generata dal tuo menu, con budget settimanale o mensile, divisione spese con i coinquilini e grafico delle spese</span>
+      </a>
+      <a href="storico.html" class="nav-card">
+        <span class="nav-card-icon">📚</span>
+        <span class="nav-card-title" data-i18n="home.navStoricoTitle">Storico</span>
+        <span class="nav-card-desc" data-i18n="home.navStoricoDesc">Rivedi cosa hai mangiato nelle settimane precedenti</span>
+      </a>
+      <a href="calorie.html" class="nav-card">
+        <span class="nav-card-icon">🔥</span>
+        <span class="nav-card-title" data-i18n="home.navCalorieTitle">Calorie</span>
+        <span class="nav-card-desc" data-i18n="home.navCalorieDesc">Facoltativo: un riepilogo solo per chi sceglie di attivarlo</span>
+      </a>
+    </section>
+
+    <section class="dish-of-day" id="dishOfDay">
+      <h2 data-i18n="home.dishOfDay">🍽️ Piatto consigliato di oggi</h2>
+      <div id="dishOfDayCard" class="dish-of-day-card"></div>
+    </section>
+
+    <section class="stats-section" id="statsSection">
+      <h2 data-i18n="home.statsTitle">📊 Le tue statistiche</h2>
+      <p id="statsEmptyMessage" class="empty-message" hidden data-i18n="home.statsEmpty">Inizia a usare l'app — menu, ricette, spesa — e qui vedrai un riepilogo di quello che hai fatto.</p>
+      <div id="statsGrid" class="stats-grid" hidden></div>
+      <p id="statsHighlight" class="stats-highlight" hidden></p>
+    </section>
+
+    <section class="intro-section">
+      <h2 data-i18n="home.howItWorks">Perché questa app</h2>
+      <div class="intro-text">
+        <p data-i18n="home.intro1">Il Kit di Sopravvivenza Erasmus nasce per una cosa semplice: toglierti la fatica di decidere ogni giorno cosa mangiare, cosa comprare e quanto stai spendendo, proprio nel periodo in cui hai già cento altre cose nuove a cui pensare.</p>
+        <p data-i18n="home.intro2">Ricette pronte, lista della spesa automatica, budget sotto controllo, piatti tipici da scoprire, divisione delle spese con i coinquilini e uno storico di cosa hai mangiato: tutto gratuito, senza account e senza pubblicità.</p>
+        <p data-i18n="home.intro3">I tuoi dati restano solo sul tuo dispositivo: nessuna registrazione richiesta.</p>
+      </div>
+      <a href="guida.html" class="secondary-link" data-i18n="home.guidaCta">📖 Guida completa a tutte le funzioni</a>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p class="footer-note" data-i18n="common.footerNote">I dati sono salvati solo su questo dispositivo/browser.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="photos.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

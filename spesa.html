@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Lista della Spesa | Piano Alimentare</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-decor" aria-hidden="true">
+      <span class="decor decor-1">🥕</span>
+      <span class="decor decor-2">🍞</span>
+      <span class="decor decor-3">🧀</span>
+      <span class="decor decor-4">🍋</span>
+    </div>
+    <h1 data-i18n="spesa.title">Lista della Spesa</h1>
+    <p class="header-subtitle" data-i18n="spesa.subtitle">Generata automaticamente dal tuo menu settimanale</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav-link" data-i18n="nav.home">Home</a>
+    <a href="menu.html" class="main-nav-link" data-i18n="nav.menu">Menu</a>
+    <a href="ricette.html" class="main-nav-link" data-i18n="nav.ricette">Ricette</a>
+    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
+    <a href="spesa.html" class="main-nav-link active" data-i18n="nav.spesa">Spesa</a>
+    <a href="storico.html" class="main-nav-link" data-i18n="nav.storico">Storico</a>
+    <a href="calorie.html" class="main-nav-link" data-i18n="nav.calorie">Calorie</a>
+    <a href="guida.html" class="main-nav-link" data-i18n="nav.guida">Guida</a>
+  </nav>
+
+  <main class="page-container">
+
+    <div class="shopping-actions">
+      <button type="button" id="refreshBtn" class="primary-btn" data-i18n="spesa.refresh">Aggiorna dal menu</button>
+      <button type="button" id="clearCheckedBtn" class="reset-btn" data-i18n="spesa.clearChecked">Deseleziona tutto</button>
+    </div>
+
+    <section class="panel">
+      <h2 data-i18n="spesa.fromMenu">Dal menu settimanale</h2>
+      <ul id="shoppingList" class="shopping-list"></ul>
+      <p id="emptyShoppingMessage" class="empty-message" hidden data-i18n="spesa.emptyShopping">Non hai ancora selezionato ricette o alimenti nel Menu Settimanale.</p>
+    </section>
+
+    <section class="panel">
+      <h2 data-i18n="spesa.otherItems">Altri articoli</h2>
+      <ul id="extraList" class="shopping-list"></ul>
+      <form id="extraForm" class="add-extra-form">
+        <input type="text" name="nome" placeholder="Es. detersivo, carta igienica..." required data-i18n-placeholder="spesa.extraNamePlaceholder">
+        <input type="text" name="quantita" placeholder="Quantità (facoltativa)" data-i18n-placeholder="spesa.extraQtyPlaceholder">
+        <button type="submit" data-i18n="common.add">+ Aggiungi</button>
+      </form>
+    </section>
+
+    <section class="panel budget-panel">
+      <h2 data-i18n="spesa.budgetTitle">💶 Budget cibo</h2>
+
+      <div class="period-toggle" id="periodToggle">
+        <button type="button" class="filter-chip active" data-period="settimana" data-i18n="spesa.thisWeek">Questa settimana</button>
+        <button type="button" class="filter-chip" data-period="mese" data-i18n="spesa.thisMonth">Questo mese</button>
+      </div>
+
+      <div id="budgetChart" class="budget-chart"></div>
+      <div id="budgetLegend" class="budget-legend"></div>
+
+      <div class="budget-summary">
+        <div class="budget-line budget-line-total">
+          <span data-i18n="spesa.totalSpent">Totale speso</span>
+          <span id="budgetGrandTotal">€ 0.00</span>
+        </div>
+      </div>
+
+      <ul id="expenseList" class="shopping-list"></ul>
+      <form id="expenseForm" class="add-expense-form">
+        <input type="number" name="importo" placeholder="Importo €" min="0" step="0.5" required data-i18n-placeholder="spesa.amountPlaceholder">
+        <select name="categoria">
+          <option value="cibo" data-i18n="budgetCategorie.cibo">Cibo</option>
+          <option value="altri" data-i18n="budgetCategorie.altri">Altri articoli</option>
+        </select>
+        <input type="text" name="nota" placeholder="Nota (es. supermercato)" data-i18n-placeholder="spesa.notePlaceholder">
+        <select name="pagatoDa" id="pagatoDaSelect"></select>
+        <label class="condivisa-label">
+          <input type="checkbox" name="condivisa">
+          <span data-i18n="spesa.shared">Spesa condivisa con i coinquilini</span>
+        </label>
+        <button type="submit" data-i18n="spesa.registerExpense">+ Registra spesa</button>
+      </form>
+    </section>
+
+    <section class="panel currency-panel">
+      <h2 data-i18n="spesa.currencyTitle">💱 Convertitore Valuta</h2>
+      <p class="panel-hint" data-i18n="spesa.currencyHint">Imposta la valuta locale e il tasso di cambio per convertire al volo i tuoi importi.</p>
+      <div class="currency-controls">
+        <select id="currencyCodeSelect"></select>
+        <div class="currency-rate-wrap">
+          <span data-i18n="spesa.currencyRateLabel">1 € =</span>
+          <input type="number" id="currencyRateInput" min="0" step="0.0001" placeholder="0.85">
+        </div>
+        <button type="button" id="currencyRefreshBtn" class="reset-btn" data-i18n="spesa.currencyRefresh">Aggiorna tasso</button>
+      </div>
+      <p id="currencyStatus" class="currency-status"></p>
+      <div class="currency-quick-convert">
+        <input type="number" id="currencyAmountEur" placeholder="Importo in €" min="0" step="0.5">
+        <span class="currency-equals">=</span>
+        <span id="currencyAmountLocal" class="currency-result">—</span>
+      </div>
+    </section>
+
+    <section class="panel roommates-panel">
+      <h2 data-i18n="spesa.roommatesTitle">👥 Coinquilini</h2>
+      <p class="panel-hint" data-i18n="spesa.roommatesHint">Aggiungi chi vive con te per dividere le spese condivise in modo equo.</p>
+      <ul id="roommateList" class="shopping-list"></ul>
+      <form id="roommateForm" class="add-extra-form">
+        <input type="text" name="nome" placeholder="Nome coinquilino" required data-i18n-placeholder="spesa.roommateNamePlaceholder">
+        <button type="submit" data-i18n="common.add">+ Aggiungi</button>
+      </form>
+    </section>
+
+    <section class="panel settlement-panel">
+      <h2 data-i18n="spesa.settlementTitle">🤝 Chi deve cosa</h2>
+      <p class="panel-hint" data-i18n="spesa.settlementHint">Calcolato sulle spese condivise registrate nel periodo selezionato sopra (settimana o mese).</p>
+      <div id="settlementSummary"></div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="budget.js"></script>
+  <script src="currency.js"></script>
+  <script src="spesa.js"></script>
+</body>
+</html>

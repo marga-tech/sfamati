@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Ricette | Piano Alimentare</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-decor" aria-hidden="true">
+      <span class="decor decor-1">🍔</span>
+      <span class="decor decor-2">🥗</span>
+      <span class="decor decor-3">🍩</span>
+      <span class="decor decor-4">🍍</span>
+    </div>
+    <h1 data-i18n="ricette.title">Ricette Consigliate</h1>
+    <p class="header-subtitle" data-i18n="ricette.subtitle">Oltre 1500 piatti facili per la vita da Erasmus, tra carne, pesce e opzioni vegetariane</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav-link" data-i18n="nav.home">Home</a>
+    <a href="menu.html" class="main-nav-link" data-i18n="nav.menu">Menu</a>
+    <a href="ricette.html" class="main-nav-link active" data-i18n="nav.ricette">Ricette</a>
+    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
+    <a href="spesa.html" class="main-nav-link" data-i18n="nav.spesa">Spesa</a>
+    <a href="storico.html" class="main-nav-link" data-i18n="nav.storico">Storico</a>
+    <a href="calorie.html" class="main-nav-link" data-i18n="nav.calorie">Calorie</a>
+    <a href="guida.html" class="main-nav-link" data-i18n="nav.guida">Guida</a>
+  </nav>
+
+  <main class="page-container">
+
+    <input type="search" id="searchInput" class="search-input" placeholder="🔍 Cerca una ricetta per nome o ingrediente..." data-i18n-placeholder="ricette.searchPlaceholder">
+
+    <div class="filters">
+      <div class="filter-group" id="categoriaFilters">
+        <button type="button" class="filter-chip active" data-categoria="tutte" data-i18n="ricette.filterAll">Tutte</button>
+        <button type="button" class="filter-chip" data-categoria="colazione" data-i18n="categorie.colazione">Colazione</button>
+        <button type="button" class="filter-chip" data-categoria="pranzo" data-i18n="categorie.pranzo">Pranzo</button>
+        <button type="button" class="filter-chip" data-categoria="cena" data-i18n="categorie.cena">Cena</button>
+        <button type="button" class="filter-chip" data-categoria="spuntino" data-i18n="categorie.spuntino">Spuntino</button>
+      </div>
+      <div class="filter-group" id="stileFilters">
+        <button type="button" class="filter-chip active" data-stile="tutti" data-i18n="ricette.filterAllStyles">Tutti gli stili</button>
+        <button type="button" class="filter-chip" data-stile="leggero" data-i18n="stili.leggero">Leggero</button>
+        <button type="button" class="filter-chip" data-stile="bilanciato" data-i18n="stili.bilanciato">Bilanciato</button>
+        <button type="button" class="filter-chip" data-stile="goloso" data-i18n="stili.goloso">Goloso</button>
+      </div>
+      <div class="filter-group" id="tempoFilters">
+        <button type="button" class="filter-chip active" data-tempo="tutti" data-i18n="ricette.filterAllTimes">Tutte le ricette</button>
+        <button type="button" class="filter-chip" data-tempo="veloce" data-i18n="tempi.veloce">Veloci</button>
+        <button type="button" class="filter-chip" data-tempo="elaborato" data-i18n="ricette.filterElaborate">Più elaborate</button>
+      </div>
+      <div class="filter-group" id="pesceFilters">
+        <button type="button" class="filter-chip active" data-pesce="tutte" data-i18n="ricette.filterFishAll">🐟 Pesce: tutte</button>
+        <button type="button" class="filter-chip" data-pesce="escludi" data-i18n="ricette.filterFishExclude">Escludi pesce</button>
+        <button type="button" class="filter-chip" data-pesce="solo" data-i18n="ricette.filterFishOnly">Solo pesce</button>
+      </div>
+      <div class="filter-group" id="extraFilters">
+        <button type="button" class="filter-chip" data-toggle="preferiti" data-i18n="ricette.filterFavorites">⭐ Solo preferite</button>
+        <button type="button" class="filter-chip" data-toggle="corsa" data-i18n="ricette.filterQuickMode">⚡ Sono di corsa</button>
+      </div>
+      <div class="filter-group" id="allergeneFilters">
+        <span class="filter-label" data-i18n="ricette.allergeneLabel">Escludi se sei allergico/intollerante a:</span>
+        <button type="button" class="filter-chip" data-allergene="glutine" data-i18n="allergeni.glutine">Glutine</button>
+        <button type="button" class="filter-chip" data-allergene="lattosio" data-i18n="allergeni.lattosio">Lattosio</button>
+        <button type="button" class="filter-chip" data-allergene="frutta_guscio" data-i18n="allergeni.frutta_guscio">Frutta a guscio</button>
+        <button type="button" class="filter-chip" data-allergene="uova" data-i18n="allergeni.uova">Uova</button>
+      </div>
+      <p class="allergene-disclaimer" data-i18n="ricette.allergeneDisclaimer">⚠️ Filtro indicativo basato sugli ingredienti elencati: in caso di allergie serie, controlla sempre bene prima di mangiare.</p>
+    </div>
+
+    <details class="frigo-tool">
+      <summary data-i18n="ricette.frigoSummary">🧊 Cosa hai in frigo? Trova ricette con quello che hai già</summary>
+      <div class="frigo-form">
+        <input type="text" id="frigoInput" placeholder="Es. zucchine, uova, pomodori... (separati da virgola)" data-i18n-placeholder="ricette.frigoPlaceholder">
+        <button type="button" id="frigoBtn" class="primary-btn" data-i18n="ricette.frigoFind">Trova ricette</button>
+        <button type="button" id="frigoClearBtn" class="reset-btn" data-i18n="common.clear">Cancella</button>
+      </div>
+    </details>
+
+    <p id="recipeCount" class="recipe-count"></p>
+
+    <div id="recipeGrid" class="recipe-grid"></div>
+
+    <button type="button" id="loadMoreBtn" class="primary-btn load-more-btn" hidden data-i18n="ricette.loadMore">Mostra altre ricette</button>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="ricette.js"></script>
+</body>
+</html>

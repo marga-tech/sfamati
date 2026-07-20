@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Storico Settimanale | Piano Alimentare</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-decor" aria-hidden="true">
+      <span class="decor decor-1">📚</span>
+      <span class="decor decor-2">🗓️</span>
+      <span class="decor decor-3">🍽️</span>
+      <span class="decor decor-4">⏳</span>
+    </div>
+    <h1 data-i18n="storico.title">Storico Settimanale</h1>
+    <p class="header-subtitle" data-i18n="storico.subtitle">Rivedi cosa hai mangiato nelle settimane precedenti</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav-link" data-i18n="nav.home">Home</a>
+    <a href="menu.html" class="main-nav-link" data-i18n="nav.menu">Menu</a>
+    <a href="ricette.html" class="main-nav-link" data-i18n="nav.ricette">Ricette</a>
+    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
+    <a href="spesa.html" class="main-nav-link" data-i18n="nav.spesa">Spesa</a>
+    <a href="storico.html" class="main-nav-link active" data-i18n="nav.storico">Storico</a>
+    <a href="calorie.html" class="main-nav-link" data-i18n="nav.calorie">Calorie</a>
+    <a href="guida.html" class="main-nav-link" data-i18n="nav.guida">Guida</a>
+  </nav>
+
+  <main class="page-container">
+
+    <p id="emptyHistoryMessage" class="empty-message" hidden data-i18n="storico.empty">Non ci sono ancora settimane archiviate: torneranno visibili qui non appena inizierai una nuova settimana nel Menu.</p>
+
+    <nav id="weekTabs" class="week-tabs"></nav>
+
+    <div id="weekContent" hidden>
+      <nav id="storicoDayTabs" class="day-tabs"></nav>
+      <div id="storicoDaysContainer"></div>
+    </div>
+
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <img id="lightboxImg" src="" alt="Foto del piatto">
+  </div>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="photos.js"></script>
+  <script src="storico.js"></script>
+</body>
+</html>
