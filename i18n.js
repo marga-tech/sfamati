@@ -24,10 +24,10 @@ const I18N = {
     budgetCategorie: { cibo: "Cibo", altri: "Altri articoli", consegna: "Consegne a domicilio", fuori: "Cene fuori" },
     allergeni: { glutine: "Glutine", lattosio: "Lattosio", frutta_guscio: "Frutta a guscio", uova: "Uova" },
     home: {
-      title: "Il Tuo Kit di Sopravvivenza Erasmus",
-      subtitle: "Cosa mangiare, cosa comprare e quanto spendi: tutto in un posto solo",
+      title: "Sfamati",
+      subtitle: "Il tuo kit di sopravvivenza per la vita da Erasmus: cosa mangiare, cosa comprare e quanto spendi, tutto in un posto solo",
       howItWorks: "Perché questa app",
-      intro1: "Il Kit di Sopravvivenza Erasmus nasce per una cosa semplice: toglierti la fatica di decidere ogni giorno cosa mangiare, cosa comprare e quanto stai spendendo, proprio nel periodo in cui hai già cento altre cose nuove a cui pensare.",
+      intro1: "Sfamati nasce per una cosa semplice: toglierti la fatica di decidere ogni giorno cosa mangiare, cosa comprare e quanto stai spendendo, proprio nel periodo in cui hai già cento altre cose nuove a cui pensare.",
       intro2: "Ricette pronte, lista della spesa automatica, budget sotto controllo, piatti tipici da scoprire, divisione delle spese con i coinquilini e uno storico di cosa hai mangiato: tutto gratuito, senza account e senza pubblicità.",
       intro3: "I tuoi dati restano solo sul tuo dispositivo: nessuna registrazione richiesta.",
       guidaCta: "📖 Guida completa a tutte le funzioni",
@@ -156,7 +156,7 @@ const I18N = {
       hideAgain: "Nascondi di nuovo questa sezione"
     },
     guida: {
-      title: "Guida al Kit di Sopravvivenza Erasmus",
+      title: "Guida a Sfamati",
       subtitle: "Tutto quello che c'è da sapere per usare l'app al meglio",
       backHome: "← Torna alla Home",
       sectionMenuTitle: "📅 Menu Settimanale",
@@ -199,10 +199,10 @@ const I18N = {
     budgetCategorie: { cibo: "Groceries", altri: "Other items", consegna: "Deliveries", fuori: "Eating out" },
     allergeni: { glutine: "Gluten", lattosio: "Lactose", frutta_guscio: "Tree nuts", uova: "Eggs" },
     home: {
-      title: "Your Erasmus Survival Kit",
-      subtitle: "What to eat, what to buy, and how much you spend: all in one place",
+      title: "Sfamati",
+      subtitle: "Your survival kit for Erasmus life: what to eat, what to buy, and how much you spend — all in one place",
       howItWorks: "Why this app",
-      intro1: "The Erasmus Survival Kit exists for one simple reason: to take the daily hassle out of deciding what to eat, what to buy and how much you're spending, right when you already have a hundred other new things to figure out.",
+      intro1: "Sfamati exists for one simple reason: to take the daily hassle out of deciding what to eat, what to buy and how much you're spending, right when you already have a hundred other new things to figure out.",
       intro2: "Ready-made recipes, an automatic shopping list, budget under control, local dishes to discover, roommate expense splitting and a history of what you ate: all free, no account, no ads.",
       intro3: "Your data stays only on your device: no sign-up required.",
       guidaCta: "📖 Full guide to every feature",
@@ -331,7 +331,7 @@ const I18N = {
       hideAgain: "Hide this section again"
     },
     guida: {
-      title: "Guide to the Erasmus Survival Kit",
+      title: "Guide to Sfamati",
       subtitle: "Everything you need to know to get the most out of the app",
       backHome: "← Back to Home",
       sectionMenuTitle: "📅 Weekly Menu",
@@ -374,10 +374,10 @@ const I18N = {
     budgetCategorie: { cibo: "Compra de comida", altri: "Otros artículos", consegna: "Comida a domicilio", fuori: "Cenas fuera" },
     allergeni: { glutine: "Gluten", lattosio: "Lactosa", frutta_guscio: "Frutos secos", uova: "Huevos" },
     home: {
-      title: "Tu Kit de Supervivencia Erasmus",
-      subtitle: "Qué comer, qué comprar y cuánto gastas: todo en un solo lugar",
+      title: "Sfamati",
+      subtitle: "Tu kit de supervivencia para la vida Erasmus: qué comer, qué comprar y cuánto gastas, todo en un solo lugar",
       howItWorks: "Por qué esta app",
-      intro1: "El Kit de Supervivencia Erasmus nace por una razón simple: quitarte el esfuerzo de decidir cada día qué comer, qué comprar y cuánto estás gastando, justo en el momento en que ya tienes otras cien cosas nuevas en las que pensar.",
+      intro1: "Sfamati nace por una razón simple: quitarte el esfuerzo de decidir cada día qué comer, qué comprar y cuánto estás gastando, justo en el momento en que ya tienes otras cien cosas nuevas en las que pensar.",
       intro2: "Recetas listas, lista de la compra automática, presupuesto bajo control, platos típicos por descubrir, división de gastos con compañeros de piso y un historial de lo que has comido: todo gratis, sin cuenta y sin publicidad.",
       intro3: "Tus datos se quedan solo en tu dispositivo: no se requiere registro.",
       guidaCta: "📖 Guía completa de todas las funciones",
@@ -506,7 +506,7 @@ const I18N = {
       hideAgain: "Ocultar de nuevo esta sección"
     },
     guida: {
-      title: "Guía del Kit de Supervivencia Erasmus",
+      title: "Guía de Sfamati",
       subtitle: "Todo lo que necesitas saber para sacarle el máximo partido a la app",
       backHome: "← Volver al Inicio",
       sectionMenuTitle: "📅 Menú Semanal",
