@@ -83,7 +83,11 @@ const I18N = {
       fixedMealsFixBtn: "📌 Fissa per tutta la settimana",
       fixedMealsRemoveBtn: "✕ Rimuovi",
       fixedMealsCurrent: "Fissato: {nome}",
-      fixedMealsNone: "Non fissato"
+      fixedMealsNone: "Non fissato",
+      recipePickerToggle: "🔍 Scegli una ricetta",
+      recipePickerSearchPlaceholder: "Cerca (es. pasta, pollo, tofu...)",
+      recipePickerNoResults: "Nessuna ricetta trovata con questo nome.",
+      recipePickerMore: "Continua a scrivere per restringere la ricerca ({n} risultati trovati)"
     },
     ricette: {
       title: "Ricette Consigliate",
@@ -275,7 +279,11 @@ const I18N = {
       fixedMealsFixBtn: "📌 Fix for the whole week",
       fixedMealsRemoveBtn: "✕ Remove",
       fixedMealsCurrent: "Fixed: {nome}",
-      fixedMealsNone: "Not fixed"
+      fixedMealsNone: "Not fixed",
+      recipePickerToggle: "🔍 Choose a recipe",
+      recipePickerSearchPlaceholder: "Search (e.g. pasta, chicken, tofu...)",
+      recipePickerNoResults: "No recipe found with this name.",
+      recipePickerMore: "Keep typing to narrow the search ({n} results found)"
     },
     ricette: {
       title: "Recommended Recipes",
@@ -467,7 +475,11 @@ const I18N = {
       fixedMealsFixBtn: "📌 Fijar para toda la semana",
       fixedMealsRemoveBtn: "✕ Quitar",
       fixedMealsCurrent: "Fijado: {nome}",
-      fixedMealsNone: "No fijado"
+      fixedMealsNone: "No fijado",
+      recipePickerToggle: "🔍 Elige una receta",
+      recipePickerSearchPlaceholder: "Busca (ej. pasta, pollo, tofu...)",
+      recipePickerNoResults: "No se ha encontrado ninguna receta con este nombre.",
+      recipePickerMore: "Sigue escribiendo para acotar la búsqueda ({n} resultados encontrados)"
     },
     ricette: {
       title: "Recetas Recomendadas",

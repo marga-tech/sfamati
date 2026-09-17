@@ -352,16 +352,106 @@ function attachAutoGenerateEvents() {
   });
 }
 
+const RECIPE_PICKER_LIMIT = 40;
+
+/* Selettore di ricette pensato per il touch/mobile: al posto del vecchio
+   <input list> + <datalist> (poco affidabile su Safari/Chrome mobile, sia per
+   la visibilità del suggerimento che per il filtro durante la digitazione),
+   qui c'è un pulsante ben visibile che apre un pannello con ricerca dal vivo
+   e risultati come pulsanti grandi e toccabili. */
+function buildRecipePickerHtml(categoria) {
+  return `
+    <div class="recipe-picker" data-categoria="${categoria}">
+      <input type="hidden" name="ricettaNome">
+      <button type="button" class="recipe-picker-toggle">${escapeHtml(t("menu.recipePickerToggle"))}</button>
+      <div class="recipe-picker-panel" hidden>
+        <input type="text" class="recipe-picker-search" placeholder="${escapeHtml(t("menu.recipePickerSearchPlaceholder"))}" autocomplete="off">
+        <div class="recipe-picker-results"></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRecipePickerResults(picker, query) {
+  const categoria = picker.dataset.categoria;
+  const resultsEl = picker.querySelector(".recipe-picker-results");
+  const all = getRecipesByCategoria(categoria);
+  const q = query.trim().toLowerCase();
+  const matches = q ? all.filter(r => r.nome.toLowerCase().includes(q)) : all;
+  const shown = matches.slice(0, RECIPE_PICKER_LIMIT);
+
+  resultsEl.innerHTML = "";
+
+  if (shown.length === 0) {
+    resultsEl.innerHTML = `<p class="recipe-picker-empty">${escapeHtml(t("menu.recipePickerNoResults"))}</p>`;
+    return;
+  }
+
+  shown.forEach(r => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "recipe-picker-result";
+    btn.dataset.nome = r.nome;
+    btn.innerHTML = `<span class="recipe-picker-result-emoji">${r.emoji || "🍽️"}</span><span>${escapeHtml(r.nome)}</span>`;
+    resultsEl.appendChild(btn);
+  });
+
+  if (matches.length > RECIPE_PICKER_LIMIT) {
+    const note = document.createElement("p");
+    note.className = "recipe-picker-note";
+    note.textContent = t("menu.recipePickerMore").replace("{n}", matches.length);
+    resultsEl.appendChild(note);
+  }
+}
+
+function openRecipePicker(picker) {
+  const panel = picker.querySelector(".recipe-picker-panel");
+  const search = picker.querySelector(".recipe-picker-search");
+  panel.hidden = false;
+  renderRecipePickerResults(picker, search.value);
+  search.focus();
+}
+
+function closeRecipePicker(picker) {
+  picker.querySelector(".recipe-picker-panel").hidden = true;
+}
+
+function toggleRecipePicker(picker) {
+  const panel = picker.querySelector(".recipe-picker-panel");
+  if (panel.hidden) openRecipePicker(picker);
+  else closeRecipePicker(picker);
+}
+
+function selectRecipeInPicker(picker, nome) {
+  const hidden = picker.querySelector('input[name="ricettaNome"]');
+  const toggle = picker.querySelector(".recipe-picker-toggle");
+  hidden.value = nome;
+  toggle.textContent = "✓ " + nome;
+  toggle.classList.add("has-selection");
+  closeRecipePicker(picker);
+}
+
+function resetRecipePicker(form) {
+  const picker = form.querySelector(".recipe-picker");
+  if (!picker) return;
+  const toggle = picker.querySelector(".recipe-picker-toggle");
+  toggle.textContent = t("menu.recipePickerToggle");
+  toggle.classList.remove("has-selection");
+  const search = picker.querySelector(".recipe-picker-search");
+  if (search) search.value = "";
+  // Gli input hidden non vengono davvero riportati al valore iniziale da
+  // form.reset() una volta che il valore è stato impostato via JS: va svuotato a mano.
+  const hidden = picker.querySelector('input[name="ricettaNome"]');
+  if (hidden) hidden.value = "";
+  closeRecipePicker(picker);
+}
+
 function buildFixedMealsPanel() {
   const container = document.getElementById("fixedMealsRows");
   container.innerHTML = "";
 
   MEALS.forEach(meal => {
     const categoria = MEAL_TO_CATEGORIA[meal];
-    const listId = `ricette-fisso-${meal}`;
-    const ricetteOptions = getRecipesByCategoria(categoria)
-      .map(r => `<option value="${escapeHtml(r.nome)}"></option>`)
-      .join("");
 
     const row = document.createElement("div");
     row.className = "fixed-meal-row";
@@ -371,8 +461,7 @@ function buildFixedMealsPanel() {
       <p class="fixed-meal-status" data-meal-status="${meal}"></p>
 
       <form class="fix-recipe-form" data-meal="${meal}">
-        <input type="text" name="ricettaNome" list="${listId}" placeholder="${escapeHtml(t("menu.fixedMealsRecipeLabel"))}" autocomplete="off" required>
-        <datalist id="${listId}">${ricetteOptions}</datalist>
+        ${buildRecipePickerHtml(categoria)}
         <select name="porzioni" class="porzioni-select" title="Per quante persone?">
           <option value="1">1 persona</option>
           <option value="2">2 persone</option>
@@ -447,6 +536,7 @@ function handleFixRecipe(e) {
   });
 
   form.reset();
+  resetRecipePicker(form);
   renderFixedMealsStatus();
   renderAllMeals(activeDay);
 }
@@ -480,10 +570,28 @@ function attachFixedMealsEvents() {
   });
 
   container.addEventListener("click", (e) => {
-    const btn = e.target.closest(".remove-fixed-btn");
-    if (!btn) return;
-    removeMealTemplate(btn.dataset.meal);
-    renderFixedMealsStatus();
+    const pickerToggle = e.target.closest(".recipe-picker-toggle");
+    const pickerResult = e.target.closest(".recipe-picker-result");
+    const removeBtn = e.target.closest(".remove-fixed-btn");
+
+    if (pickerToggle) {
+      toggleRecipePicker(pickerToggle.closest(".recipe-picker"));
+      return;
+    }
+    if (pickerResult) {
+      selectRecipeInPicker(pickerResult.closest(".recipe-picker"), pickerResult.dataset.nome);
+      return;
+    }
+    if (removeBtn) {
+      removeMealTemplate(removeBtn.dataset.meal);
+      renderFixedMealsStatus();
+    }
+  });
+
+  container.addEventListener("input", (e) => {
+    if (!e.target.classList.contains("recipe-picker-search")) return;
+    const picker = e.target.closest(".recipe-picker");
+    renderRecipePickerResults(picker, e.target.value);
   });
 }
 
@@ -524,10 +632,6 @@ function buildDays() {
 
     MEALS.forEach(meal => {
       const categoria = MEAL_TO_CATEGORIA[meal];
-      const listId = `ricette-${day}-${meal}`;
-      const ricetteOptions = getRecipesByCategoria(categoria)
-        .map(r => `<option value="${escapeHtml(r.nome)}"></option>`)
-        .join("");
 
       const section = document.createElement("section");
       section.className = "meal-section";
@@ -537,8 +641,7 @@ function buildDays() {
         <ul class="food-list"></ul>
 
         <form class="add-recipe-form">
-          <input type="text" name="ricettaNome" list="${listId}" placeholder="Cerca tra oltre 1900 ricette..." autocomplete="off" required>
-          <datalist id="${listId}">${ricetteOptions}</datalist>
+          ${buildRecipePickerHtml(categoria)}
           <select name="porzioni" class="porzioni-select" title="Per quante persone?">
             <option value="1">1 persona</option>
             <option value="2">2 persone</option>
@@ -588,6 +691,13 @@ function buildDays() {
   container.addEventListener("submit", handleFormSubmit);
   container.addEventListener("click", handleContainerClick);
   container.addEventListener("change", handlePhotoInputChange);
+  container.addEventListener("input", handleRecipePickerInput);
+}
+
+function handleRecipePickerInput(e) {
+  if (!e.target.classList.contains("recipe-picker-search")) return;
+  const picker = e.target.closest(".recipe-picker");
+  renderRecipePickerResults(picker, e.target.value);
 }
 
 function handleFormSubmit(e) {
@@ -631,6 +741,7 @@ function handleAddRecipe(e) {
   });
   saveData();
   form.reset();
+  resetRecipePicker(form);
 
   renderMeal(day, meal);
 }
@@ -720,7 +831,14 @@ function getDayMealFromForm(form) {
 }
 
 function handleContainerClick(e) {
-  if (e.target.classList.contains("delete-food")) {
+  const pickerToggle = e.target.closest(".recipe-picker-toggle");
+  const pickerResult = e.target.closest(".recipe-picker-result");
+
+  if (pickerToggle) {
+    toggleRecipePicker(pickerToggle.closest(".recipe-picker"));
+  } else if (pickerResult) {
+    selectRecipeInPicker(pickerResult.closest(".recipe-picker"), pickerResult.dataset.nome);
+  } else if (e.target.classList.contains("delete-food")) {
     handleDeleteFood(e);
   } else if (e.target.closest(".photo-thumb")) {
     openLightbox(e.target.closest(".photo-thumb").dataset.entryId);
