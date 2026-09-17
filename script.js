@@ -537,7 +537,7 @@ function buildDays() {
         <ul class="food-list"></ul>
 
         <form class="add-recipe-form">
-          <input type="text" name="ricettaNome" list="${listId}" placeholder="Cerca tra oltre 1500 ricette..." autocomplete="off" required>
+          <input type="text" name="ricettaNome" list="${listId}" placeholder="Cerca tra oltre 1900 ricette..." autocomplete="off" required>
           <datalist id="${listId}">${ricetteOptions}</datalist>
           <select name="porzioni" class="porzioni-select" title="Per quante persone?">
             <option value="1">1 persona</option>
