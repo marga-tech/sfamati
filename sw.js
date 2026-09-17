@@ -10,13 +10,12 @@
    alla prossima apertura dell'app: usalo quando pubblichi un aggiornamento
    importante e vuoi essere sicuro che tutti ripartano da una cache pulita. */
 
-const CACHE_NAME = "sfamati-cache-v2";
+const CACHE_NAME = "sfamati-cache-v3";
 
 const APP_SHELL = [
   "index.html",
   "menu.html",
   "ricette.html",
-  "scopri.html",
   "spesa.html",
   "storico.html",
   "calorie.html",
@@ -33,8 +32,6 @@ const APP_SHELL = [
   "spesa.js",
   "storico.js",
   "calorie.js",
-  "scopri.js",
-  "localita.js",
   "home.js",
   "icon-192.png",
   "icon-512.png",

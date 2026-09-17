@@ -777,13 +777,13 @@ main {
   color: #0277bd;
 }
 
-.auto-generate-panel {
+.menu-tools-panel {
   background-color: var(--bianco);
   border-bottom: 1px solid var(--grigio-bordo);
   padding: 10px 16px;
 }
 
-.auto-generate-panel summary {
+.menu-tools-panel summary {
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--primario-scuro);
@@ -792,9 +792,22 @@ main {
   margin: 0 auto;
 }
 
-.auto-generate-form {
+.menu-tools-body {
   max-width: 700px;
-  margin: 10px auto 0;
+  margin: 14px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menu-tool h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--primario-scuro);
+  margin-bottom: 10px;
+}
+
+.auto-generate-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -841,26 +854,6 @@ main {
   color: var(--secondario-scuro);
   font-weight: 600;
   min-height: 1.2em;
-}
-
-.fixed-meals-panel {
-  background-color: var(--bianco);
-  border-bottom: 1px solid var(--grigio-bordo);
-  padding: 10px 16px;
-}
-
-.fixed-meals-panel summary {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--primario-scuro);
-  cursor: pointer;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.fixed-meals-form {
-  max-width: 700px;
-  margin: 10px auto 0;
 }
 
 .fixed-meals-intro {

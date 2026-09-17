@@ -31,7 +31,6 @@
     <a href="index.html" class="main-nav-link" data-i18n="nav.home">Home</a>
     <a href="menu.html" class="main-nav-link active" data-i18n="nav.menu">Menu</a>
     <a href="ricette.html" class="main-nav-link" data-i18n="nav.ricette">Ricette</a>
-    <a href="scopri.html" class="main-nav-link" data-i18n="nav.scopri">Scopri</a>
     <a href="spesa.html" class="main-nav-link" data-i18n="nav.spesa">Spesa</a>
     <a href="storico.html" class="main-nav-link" data-i18n="nav.storico">Storico</a>
     <a href="calorie.html" class="main-nav-link" data-i18n="nav.calorie">Calorie</a>
@@ -40,51 +39,58 @@
 
   <nav id="dayTabs" class="day-tabs"></nav>
 
-  <details class="auto-generate-panel">
-    <summary data-i18n="menu.autoGenerateSummary">🎲 Genera menu automatico</summary>
-    <div class="auto-generate-form">
-      <div class="auto-generate-mode">
-        <label for="autoGenModalita" data-i18n="menu.autoGenModalitaLabel">Modalità</label>
-        <select id="autoGenModalita">
-          <option value="misto" data-i18n="menu.modeMisto">🎯 Misto (bilanciato)</option>
-          <option value="fitness" data-i18n="menu.modeFitness">💪 Fitness (leggero, meno calorie)</option>
-          <option value="veloce" data-i18n="menu.modeVeloce">⚡ Veloce (solo ricette rapide)</option>
-          <option value="goloso" data-i18n="menu.modeGoloso">🍰 Goloso (comfort food)</option>
-        </select>
-      </div>
-      <label class="auto-generate-option">
-        <input type="checkbox" id="autoGenPesce">
-        <span data-i18n="menu.autoGenNoFish">Escludi piatti a base di pesce</span>
-      </label>
-      <div class="auto-generate-allergeni">
-        <span class="filter-label" data-i18n="menu.autoGenAllergeniLabel">Escludi se hai allergie/intolleranze a:</span>
-        <div class="filter-group" id="autoGenAllergeniFilters">
-          <button type="button" class="filter-chip" data-allergene="glutine" data-i18n="allergeni.glutine">Glutine</button>
-          <button type="button" class="filter-chip" data-allergene="lattosio" data-i18n="allergeni.lattosio">Lattosio</button>
-          <button type="button" class="filter-chip" data-allergene="frutta_guscio" data-i18n="allergeni.frutta_guscio">Frutta a guscio</button>
-          <button type="button" class="filter-chip" data-allergene="uova" data-i18n="allergeni.uova">Uova</button>
+  <details class="menu-tools-panel">
+    <summary data-i18n="menu.toolsSummary">⚙️ Strumenti menu</summary>
+    <div class="menu-tools-body">
+
+      <section class="menu-tool">
+        <h3 data-i18n="menu.autoGenerateSummary">🎲 Genera menu automatico</h3>
+        <div class="auto-generate-form">
+          <div class="auto-generate-mode">
+            <label for="autoGenModalita" data-i18n="menu.autoGenModalitaLabel">Modalità</label>
+            <select id="autoGenModalita">
+              <option value="misto" data-i18n="menu.modeMisto">🎯 Misto (bilanciato)</option>
+              <option value="fitness" data-i18n="menu.modeFitness">💪 Fitness (leggero, meno calorie)</option>
+              <option value="veloce" data-i18n="menu.modeVeloce">⚡ Veloce (solo ricette rapide)</option>
+              <option value="goloso" data-i18n="menu.modeGoloso">🍰 Goloso (comfort food)</option>
+            </select>
+          </div>
+          <label class="auto-generate-option">
+            <input type="checkbox" id="autoGenPesce">
+            <span data-i18n="menu.autoGenNoFish">Escludi piatti a base di pesce</span>
+          </label>
+          <div class="auto-generate-allergeni">
+            <span class="filter-label" data-i18n="menu.autoGenAllergeniLabel">Escludi se hai allergie/intolleranze a:</span>
+            <div class="filter-group" id="autoGenAllergeniFilters">
+              <button type="button" class="filter-chip" data-allergene="glutine" data-i18n="allergeni.glutine">Glutine</button>
+              <button type="button" class="filter-chip" data-allergene="lattosio" data-i18n="allergeni.lattosio">Lattosio</button>
+              <button type="button" class="filter-chip" data-allergene="frutta_guscio" data-i18n="allergeni.frutta_guscio">Frutta a guscio</button>
+              <button type="button" class="filter-chip" data-allergene="uova" data-i18n="allergeni.uova">Uova</button>
+            </div>
+          </div>
+          <div class="auto-generate-evita">
+            <label for="autoGenEvita" data-i18n="menu.autoGenEvitaLabel">Altri alimenti da evitare</label>
+            <input type="text" id="autoGenEvita" placeholder="Es. funghi, olive, piccante... (separati da virgola)" data-i18n-placeholder="menu.autoGenEvitaPlaceholder">
+          </div>
+          <p class="allergene-disclaimer" data-i18n="ricette.allergeneDisclaimer">⚠️ Filtro indicativo basato sugli ingredienti elencati: in caso di allergie serie, controlla sempre bene prima di mangiare.</p>
+          <label class="auto-generate-option">
+            <input type="checkbox" id="autoGenOverwrite">
+            <span data-i18n="menu.autoGenOverwrite">Sostituisci anche i pasti già inseriti</span>
+          </label>
+          <button type="button" id="autoGenerateBtn" class="primary-btn" data-i18n="menu.autoGenerateBtn">Genera menu della settimana</button>
+          <p id="autoGenerateStatus" class="auto-generate-status"></p>
         </div>
-      </div>
-      <div class="auto-generate-evita">
-        <label for="autoGenEvita" data-i18n="menu.autoGenEvitaLabel">Altri alimenti da evitare</label>
-        <input type="text" id="autoGenEvita" placeholder="Es. funghi, olive, piccante... (separati da virgola)" data-i18n-placeholder="menu.autoGenEvitaPlaceholder">
-      </div>
-      <p class="allergene-disclaimer" data-i18n="ricette.allergeneDisclaimer">⚠️ Filtro indicativo basato sugli ingredienti elencati: in caso di allergie serie, controlla sempre bene prima di mangiare.</p>
-      <label class="auto-generate-option">
-        <input type="checkbox" id="autoGenOverwrite">
-        <span data-i18n="menu.autoGenOverwrite">Sostituisci anche i pasti già inseriti</span>
-      </label>
-      <button type="button" id="autoGenerateBtn" class="primary-btn" data-i18n="menu.autoGenerateBtn">Genera menu della settimana</button>
-      <p id="autoGenerateStatus" class="auto-generate-status"></p>
-    </div>
-  </details>
+      </section>
 
-  <details class="fixed-meals-panel">
-    <summary data-i18n="menu.fixedMealsSummary">📌 Pasti fissi per tutta la settimana</summary>
-    <div class="fixed-meals-form">
-      <p class="fixed-meals-intro" data-i18n="menu.fixedMealsIntro">Se mangi sempre la stessa cosa a colazione (o a un altro pasto), fissala qui una volta sola: si applica automaticamente a tutti i 7 giorni, e continuerà a farlo anche nelle settimane future finché non la cambi o la rimuovi. Puoi sempre modificare un singolo giorno senza toccare gli altri, e la generazione automatica non tocca i pasti fissati.</p>
+      <section class="menu-tool">
+        <h3 data-i18n="menu.fixedMealsSummary">📌 Pasti fissi per tutta la settimana</h3>
+        <div class="fixed-meals-form">
+          <p class="fixed-meals-intro" data-i18n="menu.fixedMealsIntro">Se mangi sempre la stessa cosa a colazione (o a un altro pasto), fissala qui una volta sola: si applica automaticamente a tutti i 7 giorni, e continuerà a farlo anche nelle settimane future finché non la cambi o la rimuovi. Puoi sempre modificare un singolo giorno senza toccare gli altri, e la generazione automatica non tocca i pasti fissati.</p>
 
-      <div id="fixedMealsRows" class="fixed-meals-rows"></div>
+          <div id="fixedMealsRows" class="fixed-meals-rows"></div>
+        </div>
+      </section>
+
     </div>
   </details>
 

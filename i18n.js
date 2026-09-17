@@ -6,7 +6,7 @@ const SUPPORTED_LANGS = ["it", "en", "es"];
 
 const I18N = {
   it: {
-    nav: { home: "Home", menu: "Menu", ricette: "Ricette", scopri: "Scopri", spesa: "Spesa", storico: "Storico", calorie: "Calorie", guida: "Guida" },
+    nav: { home: "Home", menu: "Menu", ricette: "Ricette", spesa: "Spesa", storico: "Storico", calorie: "Calorie", guida: "Guida" },
     common: {
       footerNote: "I dati sono salvati solo su questo dispositivo/browser.",
       resetAll: "Cancella tutti i dati",
@@ -28,7 +28,7 @@ const I18N = {
       subtitle: "Il tuo kit di sopravvivenza per la vita da Erasmus: cosa mangiare, cosa comprare e quanto spendi, tutto in un posto solo",
       howItWorks: "Perché questa app",
       intro1: "Sfamati nasce per una cosa semplice: toglierti la fatica di decidere ogni giorno cosa mangiare, cosa comprare e quanto stai spendendo, proprio nel periodo in cui hai già cento altre cose nuove a cui pensare.",
-      intro2: "Ricette pronte, lista della spesa automatica, budget sotto controllo, piatti tipici da scoprire, divisione delle spese con i coinquilini e uno storico di cosa hai mangiato: tutto gratuito, senza account e senza pubblicità.",
+      intro2: "Ricette pronte, lista della spesa automatica, budget sotto controllo, divisione delle spese con i coinquilini e uno storico di cosa hai mangiato: tutto gratuito, senza account e senza pubblicità.",
       intro3: "I tuoi dati restano solo sul tuo dispositivo: nessuna registrazione richiesta.",
       guidaCta: "📖 Guida completa a tutte le funzioni",
       dishOfDay: "🍽️ Piatto consigliato di oggi",
@@ -36,8 +36,6 @@ const I18N = {
       navMenuDesc: "Scegli cosa mangiare ogni giorno, tra ricette pronte e alimenti liberi",
       navRicetteTitle: "Ricette",
       navRicetteDesc: "Oltre 1900 piatti facili, con filtri per pesce, stile e tempo di preparazione",
-      navScopriTitle: "Scopri",
-      navScopriDesc: "I piatti tipici del paese dove vivi il tuo Erasmus, per assaggiare la cultura locale",
       navSpesaTitle: "Lista della Spesa",
       navSpesaDesc: "Generata dal tuo menu, con budget settimanale o mensile, divisione spese con i coinquilini e grafico delle spese",
       navCalorieTitle: "Calorie",
@@ -61,6 +59,7 @@ const I18N = {
       title: "Il Mio Menu Settimanale",
       subtitle: "Scegli cosa mangiare giorno per giorno, tra ricette pronte e alimenti liberi",
       viewHistory: "📚 Vedi settimane precedenti",
+      toolsSummary: "⚙️ Strumenti menu",
       autoGenerateSummary: "🎲 Genera menu automatico",
       autoGenNoFish: "Escludi piatti a base di pesce",
       autoGenQuick: "Solo ricette veloci",
@@ -117,12 +116,6 @@ const I18N = {
       filterDifficultyMedium: "★★★ Media",
       filterDifficultyHard: "★★★★★ Difficile",
       minutesShort: "min"
-    },
-    scopri: {
-      title: "Scopri i Piatti Tipici",
-      subtitle: "Cosa si mangia nella tua città Erasmus (o in quella dei tuoi sogni)",
-      searchPlaceholder: "🔍 Cerca un piatto o un paese...",
-      filterAll: "🌍 Tutti i paesi"
     },
     spesa: {
       title: "Lista della Spesa",
@@ -184,8 +177,6 @@ const I18N = {
       sectionMenuText: "Per ogni giorno scegli cosa mangiare a colazione, pranzo, cena e spuntini: cerca tra le ricette pronte oppure aggiungi un alimento libero scrivendolo a mano. Se sei uscito a mangiare fuori o hai ordinato da asporto, segnalo con gli appositi pulsanti così viene conteggiato anche nel budget. Con \"Genera menu automatico\" riempi l'intera settimana in un clic, scegliendo tra modalità Misto, Fitness (leggero e meno calorie), Veloce (solo ricette rapide) o Goloso (comfort food), escludendo il pesce e le tue allergie/intolleranze (glutine, lattosio, frutta a guscio, uova) o qualsiasi altro alimento tu voglia evitare.",
       sectionRicetteTitle: "🍝 Ricette",
       sectionRicetteText: "Oltre 1900 ricette filtrabili per categoria, stile (leggero, bilanciato, goloso), tempo di preparazione, presenza di pesce e allergeni da escludere. Salva le tue preferite con la stella, attiva la modalità \"Sono di corsa\" per vedere solo ricette veloci con pochi ingredienti, oppure scrivi cosa hai in frigo per trovare ricette con quello che hai già in casa.",
-      sectionScopriTitle: "🌍 Scopri",
-      sectionScopriText: "Una raccolta di piatti tipici di 15 paesi europei, per assaggiare la cultura locale del posto dove vivi il tuo Erasmus, o solo per curiosità. Filtra per paese o cerca un piatto specifico.",
       sectionSpesaTitle: "🛒 Lista della Spesa",
       sectionSpesaText: "Viene generata automaticamente dagli ingredienti del tuo Menu Settimanale: spunta quello che hai già comprato e aggiungi articoli extra non alimentari. Nella stessa pagina trovi anche il budget (spesa, consegne, cene fuori) diviso per settimana o mese, la divisione delle spese condivise con i coinquilini e un convertitore di valuta per chi vive fuori dall'area euro.",
       sectionStoricoTitle: "📚 Storico",
@@ -202,7 +193,7 @@ const I18N = {
   },
 
   en: {
-    nav: { home: "Home", menu: "Menu", ricette: "Recipes", scopri: "Discover", spesa: "Shopping", storico: "History", calorie: "Calories", guida: "Guide" },
+    nav: { home: "Home", menu: "Menu", ricette: "Recipes", spesa: "Shopping", storico: "History", calorie: "Calories", guida: "Guide" },
     common: {
       footerNote: "Your data is only saved on this device/browser.",
       resetAll: "Clear all data",
@@ -224,7 +215,7 @@ const I18N = {
       subtitle: "Your survival kit for Erasmus life: what to eat, what to buy, and how much you spend — all in one place",
       howItWorks: "Why this app",
       intro1: "Sfamati exists for one simple reason: to take the daily hassle out of deciding what to eat, what to buy and how much you're spending, right when you already have a hundred other new things to figure out.",
-      intro2: "Ready-made recipes, an automatic shopping list, budget under control, local dishes to discover, roommate expense splitting and a history of what you ate: all free, no account, no ads.",
+      intro2: "Ready-made recipes, an automatic shopping list, budget under control, roommate expense splitting and a history of what you ate: all free, no account, no ads.",
       intro3: "Your data stays only on your device: no sign-up required.",
       guidaCta: "📖 Full guide to every feature",
       dishOfDay: "🍽️ Today's recommended dish",
@@ -232,8 +223,6 @@ const I18N = {
       navMenuDesc: "Choose what to eat every day, from ready-made recipes or free-form entries",
       navRicetteTitle: "Recipes",
       navRicetteDesc: "Over 1900 easy dishes, with filters for fish, style and prep time",
-      navScopriTitle: "Discover",
-      navScopriDesc: "Traditional dishes from the country where you're doing your Erasmus, to taste the local culture",
       navSpesaTitle: "Shopping List",
       navSpesaDesc: "Generated from your menu, with weekly or monthly budget, roommate expense splitting and spending chart",
       navCalorieTitle: "Calories",
@@ -257,6 +246,7 @@ const I18N = {
       title: "My Weekly Menu",
       subtitle: "Choose what to eat day by day, from ready-made recipes or free-form entries",
       viewHistory: "📚 See previous weeks",
+      toolsSummary: "⚙️ Menu tools",
       autoGenerateSummary: "🎲 Auto-generate menu",
       autoGenNoFish: "Exclude fish-based dishes",
       autoGenQuick: "Quick recipes only",
@@ -313,12 +303,6 @@ const I18N = {
       filterDifficultyMedium: "★★★ Medium",
       filterDifficultyHard: "★★★★★ Hard",
       minutesShort: "min"
-    },
-    scopri: {
-      title: "Discover Traditional Dishes",
-      subtitle: "What people eat in your Erasmus city (or the one you dream of)",
-      searchPlaceholder: "🔍 Search a dish or a country...",
-      filterAll: "🌍 All countries"
     },
     spesa: {
       title: "Shopping List",
@@ -380,8 +364,6 @@ const I18N = {
       sectionMenuText: "For each day choose what to eat for breakfast, lunch, dinner and snacks: search among the ready-made recipes or add a free-form food by typing it in. If you ate out or ordered takeaway, log it with the dedicated buttons so it's counted in your budget too. With \"Auto-generate menu\" you can fill the whole week in one click, choosing between Mixed, Fitness (light, lower calories), Quick (fast recipes only) or Indulgent (comfort food) mode, excluding fish and your allergies/intolerances (gluten, lactose, tree nuts, eggs), or any other food you want to avoid.",
       sectionRicetteTitle: "🍝 Recipes",
       sectionRicetteText: "Over 1900 recipes filterable by category, style (light, balanced, indulgent), prep time, whether they contain fish, and allergens to exclude. Save your favourites with the star, turn on \"In a rush\" mode to see only quick recipes with few ingredients, or type what's in your fridge to find recipes using what you already have.",
-      sectionScopriTitle: "🌍 Discover",
-      sectionScopriText: "A collection of traditional dishes from 15 European countries, to taste the local culture of the place where you're doing your Erasmus, or just out of curiosity. Filter by country or search for a specific dish.",
       sectionSpesaTitle: "🛒 Shopping List",
       sectionSpesaText: "Automatically generated from the ingredients in your Weekly Menu: check off what you've already bought and add extra non-food items. On the same page you'll also find your budget (groceries, deliveries, eating out) broken down by week or month, roommate expense splitting, and a currency converter for anyone living outside the euro area.",
       sectionStoricoTitle: "📚 History",
@@ -398,7 +380,7 @@ const I18N = {
   },
 
   es: {
-    nav: { home: "Inicio", menu: "Menú", ricette: "Recetas", scopri: "Descubre", spesa: "Compra", storico: "Historial", calorie: "Calorías", guida: "Guía" },
+    nav: { home: "Inicio", menu: "Menú", ricette: "Recetas", spesa: "Compra", storico: "Historial", calorie: "Calorías", guida: "Guía" },
     common: {
       footerNote: "Tus datos se guardan solo en este dispositivo/navegador.",
       resetAll: "Borrar todos los datos",
@@ -420,7 +402,7 @@ const I18N = {
       subtitle: "Tu kit de supervivencia para la vida Erasmus: qué comer, qué comprar y cuánto gastas, todo en un solo lugar",
       howItWorks: "Por qué esta app",
       intro1: "Sfamati nace por una razón simple: quitarte el esfuerzo de decidir cada día qué comer, qué comprar y cuánto estás gastando, justo en el momento en que ya tienes otras cien cosas nuevas en las que pensar.",
-      intro2: "Recetas listas, lista de la compra automática, presupuesto bajo control, platos típicos por descubrir, división de gastos con compañeros de piso y un historial de lo que has comido: todo gratis, sin cuenta y sin publicidad.",
+      intro2: "Recetas listas, lista de la compra automática, presupuesto bajo control, división de gastos con compañeros de piso y un historial de lo que has comido: todo gratis, sin cuenta y sin publicidad.",
       intro3: "Tus datos se quedan solo en tu dispositivo: no se requiere registro.",
       guidaCta: "📖 Guía completa de todas las funciones",
       dishOfDay: "🍽️ Plato recomendado de hoy",
@@ -428,8 +410,6 @@ const I18N = {
       navMenuDesc: "Elige qué comer cada día, entre recetas listas y alimentos libres",
       navRicetteTitle: "Recetas",
       navRicetteDesc: "Más de 1900 platos fáciles, con filtros de pescado, estilo y tiempo de preparación",
-      navScopriTitle: "Descubre",
-      navScopriDesc: "Los platos típicos del país donde vives tu Erasmus, para probar la cultura local",
       navSpesaTitle: "Lista de la Compra",
       navSpesaDesc: "Generada a partir de tu menú, con presupuesto semanal o mensual, división de gastos con compañeros de piso y gráfico de gastos",
       navCalorieTitle: "Calorías",
@@ -453,6 +433,7 @@ const I18N = {
       title: "Mi Menú Semanal",
       subtitle: "Elige qué comer día a día, entre recetas listas y alimentos libres",
       viewHistory: "📚 Ver semanas anteriores",
+      toolsSummary: "⚙️ Herramientas del menú",
       autoGenerateSummary: "🎲 Generar menú automático",
       autoGenNoFish: "Excluir platos a base de pescado",
       autoGenQuick: "Solo recetas rápidas",
@@ -509,12 +490,6 @@ const I18N = {
       filterDifficultyMedium: "★★★ Media",
       filterDifficultyHard: "★★★★★ Difícil",
       minutesShort: "min"
-    },
-    scopri: {
-      title: "Descubre los Platos Típicos",
-      subtitle: "Qué se come en tu ciudad Erasmus (o en la de tus sueños)",
-      searchPlaceholder: "🔍 Busca un plato o un país...",
-      filterAll: "🌍 Todos los países"
     },
     spesa: {
       title: "Lista de la Compra",
@@ -576,8 +551,6 @@ const I18N = {
       sectionMenuText: "Para cada día elige qué comer en el desayuno, la comida, la cena y los snacks: busca entre las recetas listas o añade un alimento libre escribiéndolo a mano. Si has salido a cenar fuera o has pedido comida a domicilio, regístralo con los botones correspondientes para que también se cuente en el presupuesto. Con \"Generar menú automático\" rellenas toda la semana en un clic, eligiendo entre el modo Mixto, Fitness (ligero, menos calorías), Rápido (solo recetas rápidas) o Goloso (comfort food), excluyendo el pescado y tus alergias/intolerancias (gluten, lactosa, frutos secos, huevos), o cualquier otro alimento que quieras evitar.",
       sectionRicetteTitle: "🍝 Recetas",
       sectionRicetteText: "Más de 1900 recetas filtrables por categoría, estilo (ligero, equilibrado, goloso), tiempo de preparación, presencia de pescado y alérgenos a excluir. Guarda tus favoritas con la estrella, activa el modo \"Con prisa\" para ver solo recetas rápidas con pocos ingredientes, o escribe qué tienes en la nevera para encontrar recetas con lo que ya tienes en casa.",
-      sectionScopriTitle: "🌍 Descubre",
-      sectionScopriText: "Una colección de platos típicos de 15 países europeos, para probar la cultura local del lugar donde vives tu Erasmus, o solo por curiosidad. Filtra por país o busca un plato concreto.",
       sectionSpesaTitle: "🛒 Lista de la Compra",
       sectionSpesaText: "Se genera automáticamente a partir de los ingredientes de tu Menú Semanal: marca lo que ya has comprado y añade artículos extra no alimentarios. En la misma página encontrarás también el presupuesto (compra, comida a domicilio, cenas fuera) dividido por semana o mes, la división de gastos compartidos con los compañeros de piso y un conversor de moneda para quien vive fuera de la zona euro.",
       sectionStoricoTitle: "📚 Historial",
