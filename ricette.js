@@ -3,6 +3,8 @@
 let filtroCategoria = "tutte";
 let filtroStile = "tutti";
 let filtroTempo = "tutti";
+let filtroDurata = "tutti";
+let filtroDifficolta = "tutti";
 let filtroPesce = "tutte";
 let allergeniEsclusi = new Set();
 let searchQuery = "";
@@ -39,6 +41,10 @@ function eDiCorsa(recipe) {
 }
 
 const TEMPO_LABELS = { veloce: "Veloce", elaborato: "Più elaborata" };
+
+function starsLabel(difficolta) {
+  return "★".repeat(difficolta) + "☆".repeat(5 - difficolta);
+}
 
 const PESCE_REGEX = /salmone|tonno|gamber|merluzzo|branzino|orata|cozze|vongole|calamar|polpo|acciughe|sgombro|pesce spada|baccal|seppie|nasello|trota|sardine|capesante/i;
 
@@ -91,6 +97,22 @@ function attachFilterEvents() {
     if (!btn) return;
     filtroTempo = btn.dataset.tempo;
     setActiveChip("tempoFilters", btn);
+    resetAndRender();
+  });
+
+  document.getElementById("durataFilters").addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter-chip");
+    if (!btn) return;
+    filtroDurata = btn.dataset.durata;
+    setActiveChip("durataFilters", btn);
+    resetAndRender();
+  });
+
+  document.getElementById("difficoltaFilters").addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter-chip");
+    if (!btn) return;
+    filtroDifficolta = btn.dataset.difficolta;
+    setActiveChip("difficoltaFilters", btn);
     resetAndRender();
   });
 
@@ -190,6 +212,11 @@ function getFilteredRecipes() {
     const okCategoria = filtroCategoria === "tutte" || r.categoria === filtroCategoria;
     const okStile = filtroStile === "tutti" || r.stile === filtroStile;
     const okTempo = filtroTempo === "tutti" || r.tempo === filtroTempo;
+    const okDurata = filtroDurata === "tutti" || r.tempoMinuti <= parseInt(filtroDurata, 10);
+    const okDifficolta = filtroDifficolta === "tutti"
+      || (filtroDifficolta === "facile" && r.difficolta <= 2)
+      || (filtroDifficolta === "media" && r.difficolta === 3)
+      || (filtroDifficolta === "difficile" && r.difficolta >= 4);
     const pesce = contienePesce(r);
     const okPesce = filtroPesce === "tutte" || (filtroPesce === "escludi" && !pesce) || (filtroPesce === "solo" && pesce);
     const okAllergeni = [...allergeniEsclusi].every(chiave => !contieneAllergene(r, chiave));
@@ -198,7 +225,7 @@ function getFilteredRecipes() {
     const okSearch = !searchQuery
       || r.nome.toLowerCase().includes(searchQuery)
       || r.ingredienti.some(ing => ing.nome.toLowerCase().includes(searchQuery));
-    return okCategoria && okStile && okTempo && okPesce && okAllergeni && okPreferiti && okCorsa && okSearch;
+    return okCategoria && okStile && okTempo && okDurata && okDifficolta && okPesce && okAllergeni && okPreferiti && okCorsa && okSearch;
   });
 
   if (frigoTermini.length > 0) {
@@ -260,6 +287,8 @@ function renderRecipes() {
           <span class="badge badge-categoria">${categoriaLabel(r.categoria)}</span>
           <span class="badge badge-stile badge-stile-${r.stile}">${stileLabel(r.stile)}</span>
           <span class="badge badge-tempo">${tempoLabel(r.tempo)}</span>
+          <span class="badge badge-durata">⏱ ${r.tempoMinuti} ${t("ricette.minutesShort")}</span>
+          <span class="badge badge-difficolta" title="${starsLabel(r.difficolta)}">${starsLabel(r.difficolta)}</span>
           <span class="badge badge-kcal">${r.kcalPortion} kcal</span>
           ${pesceBadge}
           ${frigoBadge}

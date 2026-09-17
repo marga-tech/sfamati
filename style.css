@@ -1007,6 +1007,17 @@ main {
   color: #b06a00;
 }
 
+.badge-durata {
+  background-color: #eaf6ff;
+  color: #1568a6;
+}
+
+.badge-difficolta {
+  background-color: #fef2f2;
+  color: #c2410c;
+  letter-spacing: 1px;
+}
+
 .badge-stile-leggero {
   background-color: #e6f6ec;
   color: var(--verde-leggero);

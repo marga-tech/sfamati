@@ -103,7 +103,16 @@ const I18N = {
       frigoFind: "Trova ricette",
       loadMore: "Mostra altre ricette",
       filterFavorites: "⭐ Solo preferite",
-      filterQuickMode: "⚡ Sono di corsa"
+      filterQuickMode: "⚡ Sono di corsa",
+      filterDurationAll: "Qualsiasi durata",
+      filterDurationMax15: "⏱ Fino a 15 min",
+      filterDurationMax30: "⏱ Fino a 30 min",
+      filterDurationMax45: "⏱ Fino a 45 min",
+      filterDifficultyAll: "Qualsiasi difficoltà",
+      filterDifficultyEasy: "★ Facile",
+      filterDifficultyMedium: "★★★ Media",
+      filterDifficultyHard: "★★★★★ Difficile",
+      minutesShort: "min"
     },
     scopri: {
       title: "Scopri i Piatti Tipici",
@@ -286,7 +295,16 @@ const I18N = {
       frigoFind: "Find recipes",
       loadMore: "Show more recipes",
       filterFavorites: "⭐ Favourites only",
-      filterQuickMode: "⚡ In a rush"
+      filterQuickMode: "⚡ In a rush",
+      filterDurationAll: "Any duration",
+      filterDurationMax15: "⏱ Up to 15 min",
+      filterDurationMax30: "⏱ Up to 30 min",
+      filterDurationMax45: "⏱ Up to 45 min",
+      filterDifficultyAll: "Any difficulty",
+      filterDifficultyEasy: "★ Easy",
+      filterDifficultyMedium: "★★★ Medium",
+      filterDifficultyHard: "★★★★★ Hard",
+      minutesShort: "min"
     },
     scopri: {
       title: "Discover Traditional Dishes",
@@ -469,7 +487,16 @@ const I18N = {
       frigoFind: "Buscar recetas",
       loadMore: "Ver más recetas",
       filterFavorites: "⭐ Solo favoritas",
-      filterQuickMode: "⚡ Con prisa"
+      filterQuickMode: "⚡ Con prisa",
+      filterDurationAll: "Cualquier duración",
+      filterDurationMax15: "⏱ Hasta 15 min",
+      filterDurationMax30: "⏱ Hasta 30 min",
+      filterDurationMax45: "⏱ Hasta 45 min",
+      filterDifficultyAll: "Cualquier dificultad",
+      filterDifficultyEasy: "★ Fácil",
+      filterDifficultyMedium: "★★★ Media",
+      filterDifficultyHard: "★★★★★ Difícil",
+      minutesShort: "min"
     },
     scopri: {
       title: "Descubre los Platos Típicos",
