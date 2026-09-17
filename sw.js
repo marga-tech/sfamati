@@ -10,7 +10,7 @@
    alla prossima apertura dell'app: usalo quando pubblichi un aggiornamento
    importante e vuoi essere sicuro che tutti ripartano da una cache pulita. */
 
-const CACHE_NAME = "sfamati-cache-v1";
+const CACHE_NAME = "sfamati-cache-v2";
 
 const APP_SHELL = [
   "index.html",
@@ -71,6 +71,21 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(request)
       .then(async (response) => {
+        // Se il server risponde con un errore (es. 404, 500 - può succedere
+        // se il sito è momentaneamente offline o il repository non è
+        // pubblicato), NON lo salviamo in cache: sovrascriverebbe l'app
+        // buona già salvata con una pagina di errore. Meglio mostrare
+        // quello che avevamo già.
+        if (!response.ok) {
+          const cached = await caches.match(request);
+          if (cached) return cached;
+          if (request.mode === "navigate") {
+            const fallback = await caches.match("index.html");
+            if (fallback) return fallback;
+          }
+          return response;
+        }
+
         try {
           const cache = await caches.open(CACHE_NAME);
           await cache.put(request, response.clone());
