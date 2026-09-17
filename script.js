@@ -6,6 +6,7 @@ const STORAGE_KEY = "weeklyMenuData";
 const WEEK_START_KEY = "menuWeekStart";
 const HISTORY_KEY = "menuHistory";
 const MAX_HISTORY_WEEKS = 26;
+const TEMPLATE_KEY = "weeklyMealTemplates";
 
 let data = loadData();
 let activeDay = getTodayKey();
@@ -81,15 +82,73 @@ function loadData() {
 
 function emptyData() {
   const empty = {};
+  const templates = loadMealTemplates();
   DAYS.forEach(day => {
     empty[day] = {};
-    MEALS.forEach(meal => { empty[day][meal] = []; });
+    MEALS.forEach(meal => {
+      const tpl = templates[meal];
+      empty[day][meal] = tpl ? [{ ...tpl, entryId: generateEntryId() }] : [];
+    });
   });
   return empty;
 }
 
 function saveData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+/* --- Pasti fissi per tutta la settimana --- */
+
+function loadMealTemplates() {
+  const raw = localStorage.getItem(TEMPLATE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch (e) { /* dati corrotti, si riparte da vuoto */ }
+  }
+  return { colazione: null, pranzo: null, cena: null, spuntini: null };
+}
+
+function saveMealTemplates(templates) {
+  localStorage.setItem(TEMPLATE_KEY, JSON.stringify(templates));
+}
+
+function entriesEqual(a, b) {
+  if (!a || !b) return false;
+  if (a.tipo !== b.tipo) return false;
+  if (a.tipo === "ricetta") return a.ricettaId === b.ricettaId && a.porzioni === b.porzioni;
+  if (a.tipo === "libero") return a.nome === b.nome && a.kcal100 === b.kcal100 && a.grammi === b.grammi;
+  return false;
+}
+
+/* Un giorno è "libero da personalizzazioni" (quindi può essere sovrascritto quando si
+   aggiorna un pasto fisso) se è vuoto, oppure se contiene esattamente la vecchia scelta
+   fissata: in quel caso significa che l'utente non l'ha mai toccato a mano. */
+function dayMatchesTemplate(dayMealArray, templateEntry) {
+  if (!templateEntry) return true;
+  if (!dayMealArray || dayMealArray.length === 0) return true;
+  return dayMealArray.length === 1 && entriesEqual(dayMealArray[0], templateEntry);
+}
+
+function applyMealTemplateToAllDays(meal, entry) {
+  const templates = loadMealTemplates();
+  const oldTemplate = templates[meal];
+  const isFirstTime = !oldTemplate;
+
+  DAYS.forEach(day => {
+    const current = data[day][meal];
+    if (isFirstTime || dayMatchesTemplate(current, oldTemplate)) {
+      data[day][meal] = [{ ...entry, entryId: generateEntryId() }];
+    }
+  });
+
+  templates[meal] = entry;
+  saveMealTemplates(templates);
+  saveData();
+}
+
+function removeMealTemplate(meal) {
+  const templates = loadMealTemplates();
+  templates[meal] = null;
+  saveMealTemplates(templates);
 }
 
 function escapeHtml(str) {
@@ -207,8 +266,11 @@ function pickForWeek(pool, count) {
 function generaMenuAutomatico(options) {
   let riempiti = 0;
   const modeConfig = AUTOGEN_MODES[options.modalita] || AUTOGEN_MODES.misto;
+  const mealTemplates = loadMealTemplates();
 
   MEALS.forEach(meal => {
+    if (mealTemplates[meal]) return; // pasto fissato per la settimana: la generazione automatica non lo tocca
+
     const categoria = MEAL_TO_CATEGORIA[meal];
     let candidati = getRecipesByCategoria(categoria);
     if (options.escludiPesce) candidati = candidati.filter(r => !autoGenContienePesce(r));
@@ -290,11 +352,148 @@ function attachAutoGenerateEvents() {
   });
 }
 
+function buildFixedMealsPanel() {
+  const container = document.getElementById("fixedMealsRows");
+  container.innerHTML = "";
+
+  MEALS.forEach(meal => {
+    const categoria = MEAL_TO_CATEGORIA[meal];
+    const listId = `ricette-fisso-${meal}`;
+    const ricetteOptions = getRecipesByCategoria(categoria)
+      .map(r => `<option value="${escapeHtml(r.nome)}"></option>`)
+      .join("");
+
+    const row = document.createElement("div");
+    row.className = "fixed-meal-row";
+    row.dataset.meal = meal;
+    row.innerHTML = `
+      <h3>${mealLabel(meal)}</h3>
+      <p class="fixed-meal-status" data-meal-status="${meal}"></p>
+
+      <form class="fix-recipe-form" data-meal="${meal}">
+        <input type="text" name="ricettaNome" list="${listId}" placeholder="${escapeHtml(t("menu.fixedMealsRecipeLabel"))}" autocomplete="off" required>
+        <datalist id="${listId}">${ricetteOptions}</datalist>
+        <select name="porzioni" class="porzioni-select" title="Per quante persone?">
+          <option value="1">1 persona</option>
+          <option value="2">2 persone</option>
+          <option value="4">4 persone</option>
+          <option value="6">6 persone</option>
+        </select>
+        <button type="submit">${t("menu.fixedMealsFixBtn")}</button>
+      </form>
+
+      <details class="fix-food-alt">
+        <summary>${t("menu.fixedMealsFoodAlt")}</summary>
+        <form class="fix-food-form" data-meal="${meal}">
+          <input type="text" name="nome" placeholder="Alimento" required>
+          <input type="number" name="kcal100" placeholder="kcal/100g" min="0" step="1" required>
+          <input type="number" name="grammi" placeholder="Grammi" min="0" step="1" required>
+          <button type="submit">${t("menu.fixedMealsFixBtn")}</button>
+        </form>
+      </details>
+
+      <button type="button" class="remove-fixed-btn" data-meal="${meal}" hidden>${t("menu.fixedMealsRemoveBtn")}</button>
+    `;
+    container.appendChild(row);
+  });
+
+  renderFixedMealsStatus();
+}
+
+function renderFixedMealsStatus() {
+  const templates = loadMealTemplates();
+  MEALS.forEach(meal => {
+    const statusEl = document.querySelector(`.fixed-meal-status[data-meal-status="${meal}"]`);
+    const removeBtn = document.querySelector(`.remove-fixed-btn[data-meal="${meal}"]`);
+    if (!statusEl || !removeBtn) return;
+
+    const tpl = templates[meal];
+    if (tpl) {
+      statusEl.textContent = t("menu.fixedMealsCurrent").replace("{nome}", tpl.nome);
+      statusEl.classList.add("is-fixed");
+      removeBtn.hidden = false;
+    } else {
+      statusEl.textContent = t("menu.fixedMealsNone");
+      statusEl.classList.remove("is-fixed");
+      removeBtn.hidden = true;
+    }
+  });
+}
+
+function handleFixRecipe(e) {
+  e.preventDefault();
+  const form = e.target;
+  const meal = form.dataset.meal;
+  const ricettaNome = form.ricettaNome.value.trim();
+  if (!ricettaNome) return;
+
+  const categoria = MEAL_TO_CATEGORIA[meal];
+  const ricetta = getRecipesByCategoria(categoria).find(
+    r => r.nome.toLowerCase() === ricettaNome.toLowerCase()
+  );
+  if (!ricetta) {
+    alert("Ricetta non trovata: scegli un nome dall'elenco suggerito mentre digiti.");
+    return;
+  }
+
+  const porzioni = parseInt(form.porzioni.value, 10) || 1;
+  applyMealTemplateToAllDays(meal, {
+    tipo: "ricetta",
+    ricettaId: ricetta.id,
+    nome: ricetta.nome,
+    emoji: ricetta.emoji,
+    porzioni,
+    kcalTotali: ricetta.kcalPortion * porzioni
+  });
+
+  form.reset();
+  renderFixedMealsStatus();
+  renderAllMeals(activeDay);
+}
+
+function handleFixFood(e) {
+  e.preventDefault();
+  const form = e.target;
+  const meal = form.dataset.meal;
+  const nome = form.nome.value.trim();
+  const kcal100 = parseFloat(form.kcal100.value);
+  const grammi = parseFloat(form.grammi.value);
+  if (!nome || isNaN(kcal100) || isNaN(grammi)) return;
+
+  const kcalTotali = Math.round((kcal100 * grammi) / 100);
+  applyMealTemplateToAllDays(meal, { tipo: "libero", nome, kcal100, grammi, kcalTotali });
+
+  form.reset();
+  renderFixedMealsStatus();
+  renderAllMeals(activeDay);
+}
+
+function attachFixedMealsEvents() {
+  const container = document.getElementById("fixedMealsRows");
+
+  container.addEventListener("submit", (e) => {
+    if (e.target.classList.contains("fix-recipe-form")) {
+      handleFixRecipe(e);
+    } else if (e.target.classList.contains("fix-food-form")) {
+      handleFixFood(e);
+    }
+  });
+
+  container.addEventListener("click", (e) => {
+    const btn = e.target.closest(".remove-fixed-btn");
+    if (!btn) return;
+    removeMealTemplate(btn.dataset.meal);
+    renderFixedMealsStatus();
+  });
+}
+
 async function init() {
   checkWeekRollover();
   photoCache = await loadAllPhotosAsMap();
   buildTabs();
   buildDays();
+  buildFixedMealsPanel();
+  attachFixedMealsEvents();
   attachGlobalEvents();
   attachAutoGenerateEvents();
   showDay(activeDay);
